@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TOURNAMENT BY 1 MM — Los Illuminados</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#050507;color:#fff;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 50% -5%,#5a430d33,transparent 32%),linear-gradient(135deg,#050507,#11100c,#050507);pointer-events:none;z-index:-1}
+.wrap{max-width:1450px;margin:auto;padding:22px 15px 55px}
+.hero{text-align:center;padding:8px 0 25px}
+.logo{width:105px;height:105px;object-fit:cover;border-radius:50%;border:2px solid #e5c34b;box-shadow:0 0 28px #ffd84d35,0 0 70px #fff2;display:block;margin:0 auto 14px}
+.kicker{color:#d9b94e;font-size:10px;letter-spacing:4px;font-weight:800}
+h1{font-size:clamp(29px,6vw,62px);margin:9px 0 4px;letter-spacing:2px}
+.hero p{color:#858895;margin:0}
+.toolbar{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 0 24px}
+button{background:#15151b;color:#eee;border:1px solid #444;padding:11px 14px;border-radius:10px;font-weight:800;cursor:pointer;transition:.2s}
+button:hover{border-color:#ffd84d;color:#ffd84d;transform:translateY(-1px)}
+.save{background:#2b2208;border-color:#81671c;color:#ffd84d}
+.sound.on{border-color:#54d99a;color:#54d99a}
+.bracket{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.round{background:#0b0b10;border:1px solid #292a31;border-radius:20px;padding:14px;position:relative;overflow:hidden}
+.round:after{content:"";position:absolute;inset:-100%;background:linear-gradient(110deg,transparent 45%,#ffd84d08 50%,transparent 55%);animation:sweep 7s linear infinite;pointer-events:none}
+@keyframes sweep{to{transform:translateX(55%)}}
+.rh{text-align:center;margin:4px 0 15px;position:relative;z-index:1}.rh b{color:#ffd84d;font-size:13px;letter-spacing:2px}.rh small{display:block;color:#666;font-size:9px;margin-top:4px}
+.matches{display:flex;flex-direction:column;gap:14px;position:relative;z-index:1}
+.match{background:#111219;border:1px solid #2b2d38;border-radius:14px;padding:8px;transition:.25s}
+.match:hover{transform:translateY(-3px);border-color:#6a6d7c}.match.win{border-color:#54d99a;box-shadow:0 0 22px #54d99a18}.match.draw{border-color:#ffd84d}
+.player{display:flex;gap:7px;align-items:center;background:#191a22;padding:7px;border-radius:9px;margin:4px 0}
+.player input{width:100%;min-width:0;background:transparent;color:#fff;border:1px solid transparent;border-radius:6px;padding:6px;font-weight:800}
+.player input.handle{font-size:10px;font-weight:normal;color:#858999}
+.player input:focus{outline:1px solid #ffd84d;border-color:#555}
+.vs{text-align:center;color:#555;font-size:9px;font-weight:900;letter-spacing:2px}
+.controls{display:flex;gap:5px;margin-top:7px}.controls button{font-size:9px;padding:7px 6px;flex:1}
+.status{text-align:center;font-size:9px;color:#777;margin-top:6px}.status.win{color:#54d99a}
+.footer{text-align:center;color:#555865;font-size:10px;letter-spacing:1px;margin-top:25px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(20px);opacity:0;background:#171820;border:1px solid #444;padding:11px 15px;border-radius:10px;font-size:12px;transition:.25s;z-index:20}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:800px){.bracket{grid-template-columns:1fr}.round{max-width:600px;width:100%;margin:auto}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<img class="logo" src="logo.jpg" alt="Logo Los Illuminados">
+<div class="kicker">LOS ILLUMINADOS • OFFICIAL BRACKET</div>
+<h1 id="title" contenteditable="true">TOURNAMENT BY 1 MM</h1>
+<p id="subtitle" contenteditable="true">By Los Illuminados</p>
+</header>
+
+<div class="toolbar">
+<button class="save" id="save">💾 Simpan</button>
+<button id="reset">↺ Reset</button>
+<button id="clearWins">✕ Hapus Hasil</button>
+<button class="sound" id="sound">🔊 Sound: OFF</button>
+<button id="highlight">⚡ Highlight Match</button>
+</div>
+
+<main class="bracket">
+<section class="round"><div class="rh"><b>MATCH 1 — 4</b><small>ROUND ONE</small></div><div class="matches">
+<div class="match"><div class="player"><input value="Eja Piso"><input class="handle" value="2septt."></div><div class="vs">VS</div><div class="player"><input value="Clover"><input class="handle" value="Cloverr."></div><div class="controls"><button>Eja Menang</button><button>Clover Menang</button></div><div class="status">Belum ada hasil</div></div>
+<div class="match"><div class="player"><input value="Alexa"><input class="handle" value="_ShadowsKnowMyName"></div><div class="vs">VS</div><div class="player"><input value="Tofel"><input class="handle" value="Źychoツ"></div><div class="controls"><button>Alexa Menang</button><button>Tofel Menang</button></div><div class="status">Belum ada hasil</div></div>
+<div class="match"><div class="player"><input value="Natan"><input class="handle" value="Mazino"></div><div class="vs">VS</div><div class="player"><input value="Eja Piso"><input class="handle" value="2septt. (3)"></div><div class="controls"><button>Natan Menang</button><button>Eja Menang</button></div><div class="status">Belum ada hasil</div></div>
+<div class="match"><div class="player"><input value="Justin"><input class="handle" value="eggy."></div><div class="vs">VS</div><div class="player"><input value="Shevchenko Turangan"><input class="handle" value="Natus Vincere Pekz"></div><div class="controls"><button>Justin Menang</button><button>Shevchenko Menang</button></div><div class="status">Belum ada hasil</div></div>
+</div></section>
+
+<section class="round"><div class="rh"><b>MATCH 5 — 6</b><small>ROUND TWO</small></div><div class="matches">
+<div class="match"><div class="player"><input value="Eja Piso"><input class="handle" value="2septt. (2)"></div><div class="vs">VS</div><div class="player"><input value="Fallcuyy"><input class="handle" value="Farras√•✓"></div><div class="controls"><button>Eja Menang</button><button>Fallcuyy Menang</button></div><div class="status">Belum ada hasil</div></div>
+<div class="match"><div class="player"><input value="Fatir"><input class="handle" value="Juopan"></div><div class="vs">VS</div><div class="player"><input value="Eja Piso"><input class="handle" value="2septt. (5)"></div><div class="controls"><button>Fatir Menang</button><button>Eja Menang</button></div><div class="status">Belum ada hasil</div></div>
+</div></section>
+
+<section class="round"><div class="rh"><b>MATCH 7 — 8</b><small>FINAL ROUND</small></div><div class="matches">
+<div class="match"><div class="player"><input value="Joshua"><input class="handle" value="BadBro."></div><div class="vs">VS</div><div class="player"><input value="ori"><input class="handle" value="syeLow."></div><div class="controls"><button>Joshua Menang</button><button>ori Menang</button></div><div class="status">Belum ada hasil</div></div>
+<div class="match"><div class="player"><input value="Eja Piso"><input class="handle" value="2septt. (4)"></div><div class="vs">VS</div><div class="player"><input value="Shevchenko Turangan"><input class="handle" value="Natus Vincere Pekz (2)"></div><div class="controls"><button>Eja Menang</button><button>Shevchenko Menang</button></div><div class="status">Belum ada hasil</div></div>
+</div></section>
+</main>
+<div class="footer">TOURNAMENT BY 1 MM • BY LOS ILLUMINADOS</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const root=document.querySelector('.wrap'),matches=[...document.querySelectorAll('.match')],toast=document.querySelector('#toast');
+let audio=null,soundOn=false;
+function msg(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
+function tone(freq=440,dur=.09,type='sine',vol=.035){
+ if(!soundOn)return;
+ audio=audio||new (window.AudioContext||window.webkitAudioContext)();
+ const o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(vol,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+dur);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+dur);
+}
+function applyWin(m,n){
+ const inputs=m.querySelectorAll('input'),name=inputs[n*2].value;
+ m.dataset.win=n;m.classList.remove('win','draw');m.classList.add('win');
+ const s=m.querySelector('.status');s.textContent='MENANG: '+name;s.className='status win';tone(660,.12,'triangle');setTimeout(()=>tone(880,.15,'triangle'),90);
+}
+matches.forEach(m=>{const b=m.querySelectorAll('.controls button');b[0].onclick=()=>applyWin(m,0);b[1].onclick=()=>applyWin(m,1)});
+function getState(){return{title:document.querySelector('#title').innerText,subtitle:document.querySelector('#subtitle').innerText,inputs:[...root.querySelectorAll('input')].map(x=>x.value),wins:matches.map(m=>m.dataset.win??'')}}
+function save(){localStorage.setItem('losIlluminadosBracket',JSON.stringify(getState()));msg('Perubahan berhasil disimpan');tone(523,.08,'sine');setTimeout(()=>tone(659,.12,'sine'),80)}
+document.querySelector('#save').onclick=save;
+document.querySelector('#reset').onclick=()=>{localStorage.removeItem('losIlluminadosBracket');location.reload()};
+document.querySelector('#clearWins').onclick=()=>{matches.forEach(m=>{delete m.dataset.win;m.classList.remove('win');m.querySelector('.status').textContent='Belum ada hasil'});save()};
+document.querySelector('#highlight').onclick=()=>{matches.forEach(m=>m.classList.remove('draw'));const m=matches[Math.floor(Math.random()*matches.length)];m.classList.add('draw');m.scrollIntoView({behavior:'smooth',block:'center'});tone(330,.1,'square');msg('Match dipilih')};
+document.querySelector('#sound').onclick=async e=>{soundOn=!soundOn;e.currentTarget.textContent=soundOn?'🔊 Sound: ON':'🔊 Sound: OFF';e.currentTarget.classList.toggle('on',soundOn);if(soundOn){audio=audio||new (window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')await audio.resume();tone(523,.1,'triangle');msg('Sound aktif')}}; 
+const saved=localStorage.getItem('losIlluminadosBracket');
+if(saved)try{const s=JSON.parse(saved);document.querySelector('#title').innerText=s.title;document.querySelector('#subtitle').innerText=s.subtitle;root.querySelectorAll('input').forEach((x,i)=>x.value=s.inputs[i]??x.value);matches.forEach((m,i)=>{if(s.wins[i]!==''&&s.wins[i]!=null)applyWin(m,+s.wins[i])})}catch(e){}
+</script>
+</body>
+</html>
